@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Budget_App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<div class="">
+    <div>
+        <p>BUDGET APP</p>
+    </div>
+
+    <div class="container">
+        <div class="sub-container">
+            <div class="form1">
+                <div>
+                    <label for="Get_budget">Please Enter Your Budget</label>
+                    <p class="error hide" id="error-message">Value can not empty or negative</p>
+                    <input type="number" id="enter_budget" min="1">
+
+                    <div>
+                        <button class="submit" id="get-budget-button" onclick="calculate()">Calculate</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div>
+                <p>BUDGET</p>
+                <p><i class="fa-solid fa-money-bill-1-wave fa-3x"></i></p>
+                <span id="amount"></span>
+
+            </div>
+
+            <div>
+                <p>EXPENSES</p>
+                <p><i class="fa-regular fa-credit-card fa-3x"></i></p>
+                <span>Expenses</span>
+            </div>
+
+            <div>
+                <p>BALANCE</p>
+                <p><i class="fa-sharp fa-solid fa-dollar-sign fa-3x"></i></p>
+                <span>Balance</span>
+            </div>
+        </div>
+
+        <div class="sub-container">
+            <div class="form2">
+                <div>
+                    <label for="Get_expenseName">Please Enter Your Expense</label> <br>
+                    <input type="text" id="expense-name" min="3">
+
+                    <label for="Get_expense">Please Enter Budget Amount</label>
+                    <input type="number" id="expense-amount"  min="1">
+
+                    <div>
+                        <button class="add-expense" id="button" onclick="AddExpense ()">Add Expense</button>
+                    </div>
+                </div>
+            </div>
+
+
+                <div>
+                    <div>
+                        <p>Expensive Title</p>
+                        <p class="expensive-list"></p>
+                    </div>
+
+                </div>
+
+                <div>
+                    <div>
+                        <p>Expensive Value</p>
+                        <p class="cost-value"></p>
+                    </div>
+
+                </div>
+
+                <div>
+                    <p>Icons</p>
+                    <button
+                    <i class="fa-solid fa-pen-to-square"></i></button>
+                    <button
+                    <i class="fa-solid fa-trash-can"></i></button>
+                </div>
+
+        </div>
+    </div>
+
+
+    <div>
+
+
+    </div>
+
+</div>
+</body>
+
+<script src="main.js"></script>
+
+</html>

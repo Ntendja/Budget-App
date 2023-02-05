@@ -1,0 +1,60 @@
+*{
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 5em;
+}
+
+.sub-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form1{
+
+    align-items: center;
+    text-align: left;
+   border: 1px solid green;
+    margin: 20px ;
+    padding: 10px;
+width: 250px;
+
+}
+
+#enter_budget{
+    width: 90%;
+    margin: 10px 0px;
+}
+
+.form2{
+    align-items: center;
+    text-align: left;
+    border: 1px solid red;
+    margin: 20px ;
+    padding: 10px;
+    width: 250px;
+
+}
+#ExpenseName{
+    width: 90%;
+    margin: 10px 0px;
+
+}#ExpenseAmount{
+     width: 90%;
+     margin: 10px 0px;
+ }
+form2>input{
+    color: red;
+}
+
+.hide{
+    display: none;
+}
+
+.error{
+    color: red;
+}
