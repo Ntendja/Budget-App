@@ -33,22 +33,22 @@
 
         <div class="sub-container">
             <div>
-                <h3>BUDGET</h3>
+                <h4>BUDGET</h4>
                 <p><i class="fa-solid fa-money-bill-1-wave fa-3x"></i></p>
                 <span id="amount">0</span>
 
             </div>
 
             <div>
-                <h3>EXPENSES</h3>
+                <h4>EXPENSES</h4>
                 <p><i class="fa-regular fa-credit-card fa-3x"></i></p>
-                <span id="expense-show">0</span>
+                <span id="expensive-total">0</span>
             </div>
 
             <div>
-                <h3>BALANCE</h3>
+                <h4>BALANCE</h4>
                 <p><i class="fa-sharp fa-solid fa-dollar-sign fa-3x"></i></p>
-                <span>0</span>
+                <span id="balance-amount">0</span>
             </div>
         </div>
 
@@ -57,6 +57,8 @@
             <div>
                 <label>Please Enter Your Expense</label>
                 <input type="text" id="expense-name" min="3"> <br>
+
+                <p class="error hide" id="error-message-red">Value can not empty or negative</p>
 
                 <label>Please Enter Budget Amount</label>
                 <input type="number" id="expense-amount" min="1">
@@ -71,23 +73,23 @@
             <div>
 
                 <p>Expensive Title</p>
-                <p class="expensive-title"></p>
+                <p class="expensive-title form-list"></p>
 
             </div>
 
             <div>
 
                 <p>Expensive Value</p>
-                <p class="expensive-value"></p>
+                <p class="expensive-value form-list"></p>
 
             </div>
 
             <div>
                 <p>Icons</p>
                 <button
-                <i class="fa-solid fa-pen-to-square" id="edit-button"></i></button>
+                <i class="fa-solid fa-pen-to-square" id="edit-button" onclick="EditCheck()" ></i></button>
                 <button
-                <i class="fa-solid fa-trash-can" id="delete-button"></i></button>
+                <i class="fa-solid fa-trash-can" id="delete-button" onclick="DeleteCheck()" ></i></button>
             </div>
 
         </div>

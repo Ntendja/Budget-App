@@ -20,8 +20,9 @@
     justify-content: space-between;
     width: 100%;
 }
-.sub-container h3{
+.sub-container h4{
     margin-bottom: 10px;
+    color: blue;
 }
 .form1 {
 
@@ -63,4 +64,8 @@
 
 .error {
     color: red;
+}
+
+.form-list{
+    margin: 5px 0;
 }
