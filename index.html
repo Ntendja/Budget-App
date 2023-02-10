@@ -21,11 +21,11 @@
         <div class="form1">
             <div>
                 <label>Please Enter Your Budget</label>
-                <p class="error hide" id="error-message">Value can not empty or negative</p>
+                <p class="error hide error-message">Value can not empty or negative</p>
                 <input type="number" id="input_budget" min="1">
 
                 <div>
-                    <button class="submit" id="get-budget-button" onclick="calculate()">Calculate</button>
+                    <button class="submit" id="get-budget-button">Calculate</button>
 
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <div>
                 <h4>BUDGET</h4>
                 <p><i class="fa-solid fa-money-bill-1-wave fa-3x"></i></p>
-                <span id="amount">0</span>
+                <span id="amount-budget">0</span>
 
             </div>
 
@@ -56,7 +56,7 @@
         <div class="form2">
             <div>
                 <label>Please Enter Your Expense</label>
-                <input type="text" id="expense-name" min="3"> <br>
+                <input type="text" id="expense-name" min="3">
 
                 <p class="error hide" id="error-message-red">Value can not empty or negative</p>
 
@@ -64,33 +64,32 @@
                 <input type="number" id="expense-amount" min="1">
 
                 <div>
-                    <button class="add-expense" id="add-button" onclick="AddExpense ()">Add Expense</button>
+                    <button class="add-expense" id="add-button">Add Expense</button>
                 </div>
             </div>
         </div>
 
-        <div class="sub-container">
-            <div>
-
-                <p>Expensive Title</p>
-                <p class="expensive-title form-list"></p>
-
+        <div>
+            <div class="sub-container">
+                <p class="expensive-title">Expensive Title</p>
+                <p class="expensive-value">Expensive Value</p>
+                <p class="icons"></p>
             </div>
 
-            <div>
 
-                <p>Expensive Value</p>
-                <p class="expensive-value form-list"></p>
+            <div class="parent-div sub-container">
+                <!--
+                      <p class="item-title form-list">${Expense.name}</p>
+                      <p class="item-value form-list">${Expense.value}</p>
 
+
+                        <div>
+                       <button class="fa-solid fa-pen-to-square" id="edit-button"></button>
+                         <button class="fa-solid fa-trash-can" id="delete-button"></button>
+                     </div>
+                   -->
             </div>
 
-            <div>
-                <p>Icons</p>
-                <button
-                <i class="fa-solid fa-pen-to-square" id="edit-button" onclick="EditCheck()" ></i></button>
-                <button
-                <i class="fa-solid fa-trash-can" id="delete-button" onclick="DeleteCheck()" ></i></button>
-            </div>
 
         </div>
 

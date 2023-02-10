@@ -1,96 +1,128 @@
-const InputBudget = document.querySelector("#input_budget");
-const ErrorMessage = document.querySelector("#error-message");
-let BudgetShow = document.querySelector("#amount");
-const ExpensiveTotal = document.querySelector("#expensive-total");
-const BalanceAmount = document.querySelector("#balance-amount");
+//set budget form1
 
-BudgetShow.addEventListener("click", calculate);
+let Budget = 0;
+const GetBudgetButton = document.querySelector("#get-budget-button");
+const AmountBudget = document.querySelector("#amount-budget");
+let BalanceAmount = document.querySelector("#balance-amount");
 
-let BudgetValue = 0;
 
-//input budget
-function calculate() {
-    BudgetValue = InputBudget.value;
-    // empty or negative value test
-    if (BudgetValue === "" || BudgetValue < 0) {
+let ErrorMessage = document.querySelector(".error-message");
+
+GetBudgetButton.addEventListener("click", () => {
+    const InputBudget = document.querySelector("#input_budget");
+    Budget = `$${+InputBudget.value}`;
+
+    if (Budget === 0 || Budget < 0) {
         ErrorMessage.classList.remove("hide");
     } else {
         ErrorMessage.classList.add("hide");
-
-        //set budget
-        BudgetShow.innerHTML = BudgetValue;
-        //set balance
-        BalanceAmount.innerHTML = BudgetValue - ExpensiveTotal.innerHTML;
     }
+    AmountBudget.innerHTML = Budget;
+    // console.log(Budget);
+})
 
+// set Expense list form2
+
+let Expense = [];
+
+const AddExpense = document.querySelector(".add-expense");
+
+AddExpense.addEventListener("click", () => {
+    let ExpenseName = document.querySelector("#expense-name");
+    let ExpenseAmount = document.querySelector("#expense-amount");
+    Expense.push({name: ExpenseName.value, value: +ExpenseAmount.value});
+
+    ExpenseName.value = "";
+    ExpenseAmount.value = "";
+    deployList();
+})
+
+
+// create Element
+const deployList = () => {
+    const ParentDiv = document.querySelector(".parent-div");
+    ParentDiv.innerHTML = "";
+    let sum = 0;
+    //forEach
+    Expense.forEach(items => {
+
+        const p_first = document.createElement("p");
+        p_first.classList.add("item-title", "form-list");
+        const node_1 = document.createTextNode(items.name);
+        p_first.appendChild(node_1);
+
+        const p_second = document.createElement("p");
+        p_second.classList.add("item-title", "form-list");
+        const node_2 = document.createTextNode(`$${items.value}`);
+        p_second.appendChild(node_2);
+
+        const div_child = document.createElement("div");
+
+        //edit_btn
+        const edit_btn = document.createElement("button");
+        edit_btn.classList.add("fa-solid", "fa-pen-to-square");
+        edit_btn.id = "edit-button";
+
+        //delete_btn
+        const delete_btn = document.createElement("button");
+        delete_btn.classList.add("fa-solid", "fa-trash-can");
+        delete_btn.id = "delete-button";
+
+        div_child.appendChild(edit_btn);
+        div_child.appendChild(delete_btn);
+
+
+        ParentDiv.appendChild(p_first);
+        ParentDiv.appendChild(p_second);
+        ParentDiv.appendChild(div_child);
+    })
+
+
+    //Expense Sum split with Map() method
+
+    Expense.map(items => {
+        sum += items.value;
+    });
+    const ExpensiveTotal = document.querySelector("#expensive-total");
+    ExpensiveTotal.innerHTML = `$${sum}`;
+
+    // Balance show
+
+   // const balanceTotal = Budget - sum;
+   // BalanceAmount.innerHTML = balanceTotal;
 }
 
 
-const ExpenseName = document.querySelector("#expense-name");
-const ExpenseAmount = document.querySelector("#expense-amount");
-const ErrorMessageRed = document.querySelector("#error-message-red");
-
-let ExpensiveTitle = document.querySelector(".expensive-title");
-let ExpensiveValue = document.querySelector(".expensive-value");
-
-ExpensiveTitle.addEventListener("click", AddExpense);
-ExpensiveValue.addEventListener("click", AddExpense);
 
 
-// to contents expensive-list
-const ListItems = {
-    ItemsName: [],
-    ListPrice: [],
-};
-
-function AddExpense() {
-    //set expensive value
-    ListItems.ListPrice = ExpenseAmount.value;
-    // empty or negative value test
-    if (ListItems.ListPrice === "" || ListItems.ListPrice < 0) {
-        ErrorMessageRed.classList.remove("hide");
-    } else {
-        ErrorMessageRed.classList.add("hide");
-        //set expensive amount
-        ExpensiveValue.innerHTML = ListItems.ListPrice;
-    }
-    //set expensive name
-    ListItems.ItemsName = ExpenseName.value;
-    ExpensiveTitle.innerHTML = ListItems.ItemsName;
 
 
-}
 
-//create document
 
-const CreateElement = (ExpensiveTitle, ExpensiveValue) => {
-    let ParentDiv = document.createElement("div");
-    ParentDiv.classList.add("sub-container");
 
-    let FirstChildDiv = document.createElement("div");
-    FirstChildDiv.innerHTML = `<p class="expensive-title form-list">${ExpensiveTitle}`;
 
-    let SecondChildDiv = document.createElement("div");
-    SecondChildDiv.innerHTML =`<p class="expensive-value  form-list"></p>${ExpensiveValue}`;
 
-    let ThreeChildDiv = document.createElement("div");
 
-    let EditButton = document.createElement("button");
-    EditButton.classList.add("fa-solid", "fa-pen-to-square");
-    EditButton.addEventListener("click", EditCheck);
 
-    let DeleteButton = document.createElement("button");
-    DeleteButton.classList.add("fa-solid", "fa-trash-can");
-    DeleteButton.addEventListener("click", DeleteCheck);
 
-    ThreeChildDiv.appendChild(EditButton);
-    ThreeChildDiv.appendChild(DeleteButton);
 
-    ParentDiv.appendChild(FirstChildDiv);
-    ParentDiv.appendChild(SecondChildDiv);
-    ParentDiv.appendChild(ThreeChildDiv);
-    CreateElement.appendChild(ParentDiv);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
