@@ -11,7 +11,6 @@ let ErrorMessage = document.querySelector(".error-message");
 GetBudgetButton.addEventListener("click", () => {
     const InputBudget = document.querySelector("#input_budget");
     Budget = `$${+InputBudget.value}`;
-
     if (Budget === 0 || Budget < 0) {
         ErrorMessage.classList.remove("hide");
     } else {
@@ -40,10 +39,11 @@ AddExpense.addEventListener("click", () => {
 
 // create Element
 const deployList = () => {
-    const ParentDiv = document.querySelector(".parent-div");
+    let ParentDiv = document.querySelector(".parent-div");
     ParentDiv.innerHTML = "";
     let sum = 0;
     //forEach
+
     Expense.forEach(items => {
 
         const p_first = document.createElement("p");
@@ -68,10 +68,10 @@ const deployList = () => {
         delete_btn.classList.add("fa-solid", "fa-trash-can");
         delete_btn.id = "delete-button";
 
+
+
         div_child.appendChild(edit_btn);
         div_child.appendChild(delete_btn);
-
-
         ParentDiv.appendChild(p_first);
         ParentDiv.appendChild(p_second);
         ParentDiv.appendChild(div_child);
@@ -88,10 +88,12 @@ const deployList = () => {
 
     // Balance show
 
-   // const balanceTotal = Budget - sum;
-   // BalanceAmount.innerHTML = balanceTotal;
+    // const balanceTotal = Budget - sum;
+    // BalanceAmount.innerHTML = balanceTotal;
 }
 
+
+// delete_btn
 
 
 
