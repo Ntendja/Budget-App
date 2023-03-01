@@ -22,10 +22,10 @@
             <div>
                 <label>Please Enter Your Budget</label>
                 <p class="error hide error-message">Value can not empty or negative</p>
-                <input type="number" id="input_budget" min="1">
+                <input type="number" id="input-budget" min="1">
 
                 <div>
-                    <button class="submit" id="get-budget-button">Calculate</button>
+                    <button class="submit" id="calculate">Calculate</button>
 
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <div>
                 <h4>BUDGET</h4>
                 <p><i class="fa-solid fa-money-bill-1-wave fa-3x"></i></p>
-                <span id="amount-budget">0</span>
+                <span id="budget-value">0</span>
 
             </div>
 
@@ -56,15 +56,15 @@
         <div class="form2">
             <div>
                 <label>Please Enter Your Expense</label>
-                <input type="text" id="expense-name" min="3">
+                <input type="text" id="input-expenseName" min="3">
 
                 <p class="error hide" id="error-message-red">Value can not empty or negative</p>
 
                 <label>Please Enter Budget Amount</label>
-                <input type="number" id="expense-amount" min="1">
+                <input type="number" id="input-expense-amount" min="1">
 
                 <div>
-                    <button class="add-expense" id="add-button">Add Expense</button>
+                    <button class="add-expense" id="add-expense">Add Expense</button>
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
             </div>
 
 
-            <div class="parent-div sub-container">
+            <div class="parent-div ">
                 <!--
                       <p class="item-title form-list">${Expense.name}</p>
                       <p class="item-value form-list">${Expense.value}</p>
@@ -98,6 +98,7 @@
 </div>
 </body>
 
-<script src="main.js"></script>
+<!--<script src="main.js"></script>-->
+<script src="base.js"></script>
 
 </html>

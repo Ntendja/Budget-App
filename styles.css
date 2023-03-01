@@ -60,7 +60,7 @@
 }
 
 .hide {
-    display: none;
+    display: block;
 }
 
 .error {
@@ -69,4 +69,23 @@
 
 .form-list{
     margin: 5px 0;
+}
+
+.parent-div{
+    display: grid;
+    grid-template-columns: 4fr 2fr 1fr ;
+    padding: 0.5em 1em;
+    margin-top: 1em;
+}
+#edit-button{
+    margin-right: 1em;
+    color: blue;
+    border: none;
+    cursor: pointer;
+}
+#delete-button{
+    margin-right: 1em;
+    color: red;
+    border: none;
+    cursor: pointer;
 }
