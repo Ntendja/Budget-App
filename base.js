@@ -36,20 +36,22 @@ const Parameters = {
 // setting GetBudgetButton function
 function GetBudget(){
     if (input_budget.value === "" || input_budget.value <= 0){
-        error_message.classList.add("hide");
-    } else{
         error_message.classList.remove("hide");
+    } else{
+        error_message.classList.add("hide");
         Calculate_amount(false);
     }
 }
 
 // setting AddExpense function
 function AddExpense() {
-    if (input_ExpenseName.value === "" || input_ExpenseAmount.value === "" ){
-        error_message.classList.remove("hide");
-    } else {
+    if (input_ExpenseName.value === "" || input_ExpenseAmount.value === "" ||
+        input_ExpenseName.value <= 0 || input_ExpenseAmount.value <= 0){
         error_message.classList.add("hide");
+    } else {
+        error_message.classList.remove("hide");
         Parameters.expense.push({
+            id: Parameters.expense.length + 1,
             title: input_ExpenseName.value,
             value: input_ExpenseAmount.value
         });
@@ -60,19 +62,21 @@ function AddExpense() {
 //setting Calculate_amount
 function Calculate_amount(bool){
     if (!bool){
-        Parameters.budget_amount = input_budget.value;
+        Parameters.budget_amount = +input_budget.value;
     }
     Parameters.expense_amount = GetExpenseTotal();
-    Parameters.balance = Parameters.budget_amount - Parameters.expense_amount
+   Parameters.balance = Parameters.budget_amount - Parameters.expense_amount
+
     ShowValue();
 }
 
 //calculate Total Expense
 function GetExpenseTotal(){
-    let sum = 0;
-    Parameters.expense.map(items =>{
-        sum += items.value;
-    })
+    return  Parameters.expense.reduce((acc,item) =>{
+        acc += +item.value;
+        return acc;
+    },0);
+
 }
 
 // show value of Dom
@@ -85,8 +89,9 @@ function ShowValue(){
     // clean the Dom after setting value
     input_budget.value = "";
     input_ExpenseName.value = "";
-     input_ExpenseAmount.value = "";
-
+    input_ExpenseAmount.value = "";
+// muss hier Balance parameters einstellen
+    // muss hier Expense parameters einstellen
     DeployList();
 }
 
@@ -131,7 +136,34 @@ const DeployList = () => {
         ParentDiv.appendChild(p_second);
         ParentDiv.appendChild(div_child);
     })
+    setChange();
 }
+
+function setChange(){
+    const EditButton = document.querySelector("#edit-button");
+    const DeleteButton = document.querySelector("#delete-button");
+
+    EditButton.forEach(item => {
+        item.addEventListener("click", ModifyEdit, false);
+    });
+
+    DeleteButton.forEach(item => {
+        item.addEventListener("click", ModifyDelete, false);
+    });
+}
+
+function ModifyEdit(e){
+    let id = e.target.id;
+    let title = Parameters.expense[id].title;
+    let value = Parameters.expense[id].value;
+    Parameters.expense.splice([id], 1);
+    Calculate_amount(true);
+    input_ExpenseName.value = title;
+    input_ExpenseAmount.value = value;
+}
+
+
+
 
 
 

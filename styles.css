@@ -60,7 +60,7 @@
 }
 
 .hide {
-    display: block;
+    display: none;
 }
 
 .error {
