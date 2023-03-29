@@ -26,18 +26,19 @@ add_expense_btn.addEventListener("click", AddExpense, false);
 // set parameter
 
 const Parameters = {
-    budget_amount : 0,
-    expense_amount : 0,
-    balance : 0,
-    expense : []
+    budget_amount: 0,
+    expense_amount: 0,
+    balance: 0,
+    expense: [],
+    selectedExpense: null,
 };
 
 
 // setting GetBudgetButton function
-function GetBudget(){
-    if (input_budget.value === "" || input_budget.value <= 0){
+function GetBudget() {
+    if (input_budget.value === "" || input_budget.value <= 0) {
         error_message.classList.remove("hide");
-    } else{
+    } else {
         error_message.classList.add("hide");
         Calculate_amount(false);
     }
@@ -46,42 +47,54 @@ function GetBudget(){
 // setting AddExpense function
 function AddExpense() {
     if (input_ExpenseName.value === "" || input_ExpenseAmount.value === "" ||
-        input_ExpenseName.value <= 0 || input_ExpenseAmount.value <= 0){
+        input_ExpenseName.value <= 0 || input_ExpenseAmount.value <= 0) {
         error_message.classList.add("hide");
     } else {
         error_message.classList.remove("hide");
-        Parameters.expense.push({
-            id: Parameters.expense.length + 1,
-            title: input_ExpenseName.value,
-            value: input_ExpenseAmount.value
-        });
+
+        if (Parameters.selectedExpense === null) {
+            Parameters.expense.push({
+                id: Parameters.expense.length + 1,
+                title: input_ExpenseName.value,
+                value: input_ExpenseAmount.value
+            });
+        } else {
+            Parameters.expense.forEach((item) => {
+                if (item.id === Parameters.selectedExpense.id) {
+                    item.title = input_ExpenseName.value;
+                    item.value = input_ExpenseAmount.value;
+                }
+            })
+        }
+
+        Parameters.selectedExpense = null;
         Calculate_amount(true);
     }
 }
 
 //setting Calculate_amount
-function Calculate_amount(bool){
-    if (!bool){
+function Calculate_amount(bool) {
+    if (!bool) {
         Parameters.budget_amount = +input_budget.value;
     }
     Parameters.expense_amount = GetExpenseTotal();
-   Parameters.balance = Parameters.budget_amount - Parameters.expense_amount
+    Parameters.balance = Parameters.budget_amount - Parameters.expense_amount
 
     ShowValue();
 }
 
 //calculate Total Expense
-function GetExpenseTotal(){
-    return  Parameters.expense.reduce((acc,item) =>{
+function GetExpenseTotal() {
+    return Parameters.expense.reduce((acc, item) => {
         acc += +item.value;
         return acc;
-    },0);
+    }, 0);
 
 }
 
 // show value of Dom
 
-function ShowValue(){
+function ShowValue() {
     budget_value.innerHTML = `$${Parameters.budget_amount}`;
     expensive_total.innerHTML = `$${Parameters.expense_amount}`;
     balance_amount.innerHTML = `$${Parameters.balance}`;
@@ -90,8 +103,7 @@ function ShowValue(){
     input_budget.value = "";
     input_ExpenseName.value = "";
     input_ExpenseAmount.value = "";
-// muss hier Balance parameters einstellen
-    // muss hier Expense parameters einstellen
+
     DeployList();
 }
 
@@ -103,32 +115,33 @@ const DeployList = () => {
 
     //forEach
 
-    Parameters.expense.forEach(items => {
+    Parameters.expense.forEach(item => {
 
         const p_first = document.createElement("p");
         p_first.classList.add("item-title", "form-list");
-        const node_1 = document.createTextNode(`- ${items.title}`);
+        const node_1 = document.createTextNode(`- ${item.title}`);
         p_first.appendChild(node_1);
 
         const p_second = document.createElement("p");
         p_second.classList.add("item-value", "form-list");
-        const node_2 = document.createTextNode(`$${items.value}`);
+        const node_2 = document.createTextNode(`$${item.value}`);
         p_second.appendChild(node_2);
 
         const div_child = document.createElement("div");
 
         //edit_btn
         const edit_btn = document.createElement("button");
-        edit_btn.classList.add("fa-solid", "fa-pen-to-square");
+        edit_btn.classList.add("fa-solid", "fa-pen-to-square", "edit-button");
         edit_btn.style.fontSize = "1em";
-        edit_btn.id = "edit-button";
+        edit_btn.addEventListener("click", modifyEdit, false);
+        edit_btn.setAttribute("data-id", item.id);
 
         //delete_btn
         const delete_btn = document.createElement("button");
-        delete_btn.classList.add("fa-solid", "fa-trash-can");
+        delete_btn.classList.add("fa-solid", "fa-trash-can", "delete-button");
         delete_btn.style.fontSize = "1em";
-        delete_btn.id = "delete-button";
-
+        delete_btn.addEventListener("click", DeleteButton, false);
+        delete_btn.setAttribute("data-id", item.id);
 
         div_child.appendChild(edit_btn);
         div_child.appendChild(delete_btn);
@@ -136,31 +149,31 @@ const DeployList = () => {
         ParentDiv.appendChild(p_second);
         ParentDiv.appendChild(div_child);
     })
-    setChange();
 }
 
-function setChange(){
-    const EditButton = document.querySelector("#edit-button");
-    const DeleteButton = document.querySelector("#delete-button");
+function modifyEdit(e) {
+    let id = +e.target.dataset.id;
+    const expense = Parameters.expense.find(item => item.id === id)
+    console.log(expense);
 
-    EditButton.forEach(item => {
-        item.addEventListener("click", ModifyEdit, false);
-    });
 
-    DeleteButton.forEach(item => {
-        item.addEventListener("click", ModifyDelete, false);
-    });
+    input_ExpenseName.value = expense.title;
+    input_ExpenseAmount.value = expense.value;
+    Parameters.selectedExpense = expense;
+
 }
 
-function ModifyEdit(e){
-    let id = e.target.id;
-    let title = Parameters.expense[id].title;
-    let value = Parameters.expense[id].value;
-    Parameters.expense.splice([id], 1);
+
+function DeleteButton(e) {
+    let id = +e.target.dataset.id;
+    Parameters.expense = Parameters.expense.filter(item => item.id !== id)
+    DeployList();
     Calculate_amount(true);
-    input_ExpenseName.value = title;
-    input_ExpenseAmount.value = value;
 }
+
+
+
+
 
 
 

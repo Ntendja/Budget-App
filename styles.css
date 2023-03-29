@@ -77,13 +77,13 @@
     padding: 0.5em 1em;
     margin-top: 1em;
 }
-#edit-button{
+.edit-button{
     margin-right: 1em;
     color: blue;
     border: none;
     cursor: pointer;
 }
-#delete-button{
+.delete-button{
     margin-right: 1em;
     color: red;
     border: none;
