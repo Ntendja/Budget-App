@@ -5,25 +5,46 @@
 
 }
 
+body {
+    width: 60%;
+    margin: 5em auto;
+    box-shadow: 5px 5px 10px 15px lightgray;
+    padding: 1em;
+
+}
+
+#budget_app {
+    margin: 20px 20px;
+    font-weight: bold;
+
+}
+
 .container {
-    width: 100%;
     display: grid;
     grid-template-columns: auto auto;
     gap: 2em;
-    margin: 1em auto;
-
-
 }
 
 .sub-container {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+
 }
-.sub-container h4{
-    margin-bottom: 10px;
+
+
+.sub-container p i {
+    margin: 20px;
+    align-items: center;
     color: blue;
 }
+
+.sub-container span {
+    margin: 20px;
+}
+
 .form1 {
 
     align-items: center;
@@ -35,30 +56,55 @@
 
 }
 
-#input_budget {
-    width: 90%;
-    margin: 10px 0px;
+.form1 input {
+    width: 300px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    padding: 3px;
 }
+.form1 input:hover {
+    border-color: green;
+}
+#calculate {
+    padding: 5px;
+    border-radius: 10px;
+    border-color: green;
+    cursor: pointer;
 
-
+}
+#calculate:hover {
+    background-color: green;
+}
 .form2 {
     display: block;
     border: 2px solid red;
     width: 350px;
     margin: 20px;
     padding: 20px;
-    flex-direction: column;
 
 }
-
-
 .form2 input {
     width: 300px;
     margin-bottom: 10px;
     margin-top: 5px;
+    padding: 3px;
 
 }
 
+
+.form2 input:hover {
+    border-color: red;
+}
+#add-expense {
+    padding: 5px;
+    border-radius: 10px;
+    border-color: red;
+    cursor: pointer;
+
+}
+#add-expense:hover {
+    background-color: red;
+}
 .hide {
     display: none;
 }
@@ -67,23 +113,27 @@
     color: red;
 }
 
-.form-list{
+.form-list {
     margin: 5px 0;
+    text-transform: capitalize;
+    color: red;
 }
 
-.parent-div{
+.parent-div {
     display: grid;
-    grid-template-columns: 4fr 2fr 1fr ;
+    grid-template-columns: 4fr 2fr 1fr;
     padding: 0.5em 1em;
     margin-top: 1em;
 }
-.edit-button{
+
+.edit-button {
     margin-right: 1em;
     color: blue;
     border: none;
     cursor: pointer;
 }
-.delete-button{
+
+.delete-button {
     margin-right: 1em;
     color: red;
     border: none;
