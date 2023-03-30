@@ -13,17 +13,16 @@
 <body>
 <div class="">
     <div>
-        <p id="budget_app">BUDGET APP</p>
+        <p id="budget_app">budget app</p>
     </div>
 
     <div class="container">
 
 
-
         <div class="form1">
             <div>
                 <label>Please Enter Your Budget</label>
-                <p class="error hide error-message">Value can not empty or negative</p>
+                <p class=" hide" id="budget_message">Value can not empty or negative</p>
                 <input type="number" id="input-budget" min="1">
 
                 <div>
@@ -60,10 +59,11 @@
                 <label>Please Enter Your Expense</label>
                 <input type="text" id="input-expenseName" min="3">
 
-                <p class="error hide ">Value can not empty or negative</p>
 
                 <label>Please Enter Budget Amount</label>
                 <input type="number" id="input-expense-amount" min="1">
+
+                <p class=" hide" id="expense_message">Value can not empty or negative</p>
 
                 <div>
                     <button class="add-expense" id="add-expense">Add Expense</button>

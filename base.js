@@ -16,7 +16,8 @@ const expensive_total = document.querySelector("#expensive-total");
 const balance_amount = document.querySelector("#balance-amount");
 
 //set error-message
-const error_message = document.querySelector(".error-message");
+const budgetMessage = document.querySelector("#budget_message");
+const expenseMessage = document.querySelector("#expense_message");
 
 //set addEventListener
 
@@ -37,9 +38,11 @@ const Parameters = {
 // setting GetBudgetButton function
 function GetBudget() {
     if (input_budget.value === "" || input_budget.value <= 0) {
-        error_message.classList.remove("hide");
+
+        budgetMessage.style.display = "block"
     } else {
-        error_message.classList.add("hide");
+        budgetMessage.style.display = "none"
+
         Calculate_amount(false);
     }
 }
@@ -48,9 +51,9 @@ function GetBudget() {
 function AddExpense() {
     if (input_ExpenseName.value === "" || input_ExpenseAmount.value === "" ||
         input_ExpenseName.value <= 0 || input_ExpenseAmount.value <= 0) {
-        error_message.classList.add("hide");
+        expenseMessage.style.display = "block"
     } else {
-        error_message.classList.remove("hide");
+        expenseMessage.style.display = "none"
 
         if (Parameters.selectedExpense === null) {
             Parameters.expense.push({
@@ -95,15 +98,24 @@ function GetExpenseTotal() {
 // show value of Dom
 
 function ShowValue() {
-    budget_value.innerHTML = `$${Parameters.budget_amount}`;
-    expensive_total.innerHTML = `$${Parameters.expense_amount}`;
-    balance_amount.innerHTML = `$${Parameters.balance}`;
+    budget_value.innerHTML = `$  ${Parameters.budget_amount}`;
+    expensive_total.innerHTML = `$  ${Parameters.expense_amount}`;
+    balance_amount.innerHTML = `$  ${Parameters.balance}`;
 
     // clean the Dom after setting value
     input_budget.value = "";
     input_ExpenseName.value = "";
     input_ExpenseAmount.value = "";
 
+    if (Parameters.balance >= 0) {
+        balance_amount.classList.remove("danger-color");
+        balance_amount.classList.add("success-color");
+    } else {
+        balance_amount.classList.remove("success-color");
+        balance_amount.classList.add("danger-color");
+    }
+    budget_value.classList.add("success-color");
+    expensive_total.classList.add("danger-color");
     DeployList();
 }
 
@@ -124,7 +136,7 @@ const DeployList = () => {
 
         const p_second = document.createElement("p");
         p_second.classList.add("item-value", "form-list");
-        const node_2 = document.createTextNode(`$${item.value}`);
+        const node_2 = document.createTextNode(`$  ${item.value}`);
         p_second.appendChild(node_2);
 
         const div_child = document.createElement("div");
